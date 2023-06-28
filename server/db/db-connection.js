@@ -22,10 +22,7 @@ const watchCollection = () => {
         changeStream.on("change", (change) => {
             if (change.operationType == "insert") {
                 const messageDetails = change.fullDocument;
-                pusher.trigger("messages", "inserted", {
-                    name: messageDetails.name,
-                    message: messageDetails.message,
-                });
+                pusher.trigger("messages", "inserted", messageDetails);
             } else {
                 console.log("Error triggering pusher!");
             }

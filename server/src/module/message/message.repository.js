@@ -4,5 +4,10 @@ class MessageRepository{
         const res = await message.create(payLoad);
         return res;
     }
+
+    async findAll(){
+        const res = await message.find({});
+        return res;
+    }
 }
 export default new MessageRepository;
