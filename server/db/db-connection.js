@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { pusher } from '../pusher-config/pusher.config.js'
+import {pusher} from '../pusher-config/pusher.config.js';
+import MessageRepository from '../src/module/message/message.repository.js';
 dotenv.config();
 const Connetction = async () => {
     try {
@@ -19,10 +20,12 @@ const watchCollection = () => {
     db.once("open", () => {
         const msgCollection = db.collection("messages");
         const changeStream = msgCollection.watch();
-        changeStream.on("change", (change) => {
+        changeStream.on("change", async (change) => {
             if (change.operationType == "insert") {
                 const messageDetails = change.fullDocument;
-                pusher.trigger("messages", "inserted", messageDetails);
+                const id = messageDetails?._id.toString();
+                const message = await MessageRepository.findMessageById(id);
+                pusher.trigger("messages", "inserted", message);
             } else {
                 console.log("Error triggering pusher!");
             }

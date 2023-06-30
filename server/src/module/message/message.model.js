@@ -1,10 +1,20 @@
 import mongoose from "mongoose";
-
+import user from "../user/user.model.js";
 const MessageSchema = mongoose.Schema(
     {
+        senderId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'user'
+        },
+        recieverId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'user'
+        },
         message: String,
-        name: String,
-        recieved: Boolean
+        recieved: Boolean,
+
     },
     { timestamps: true }
 )

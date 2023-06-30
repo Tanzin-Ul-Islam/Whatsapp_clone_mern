@@ -11,7 +11,17 @@ class MessageService {
 
     async getMessage(req, res) {
         const result = await MessageRepository.findAll();
-        res.status(200).send({status: "success", data: result})
+        res.status(200).send({ status: "success", data: result })
+    }
+
+    async getUserMessages(req, res) {
+        const { userId, chattingWithId } = req.body;
+        const result = await MessageRepository.getUserMessages(userId, chattingWithId);
+        if (!result) {
+            res.status(404).send({ status: "error", message: "Data not found" })
+        }
+        res.status(200).send({ status: "success", data: result })
+
     }
 }
 
