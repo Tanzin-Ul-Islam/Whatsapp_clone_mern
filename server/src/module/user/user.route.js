@@ -1,8 +1,7 @@
 import express from 'express';
-import MessageService from './user.service.js';
+import UserService from './user.service.js';
 const router = express.Router();
 
-router.post('/', MessageService.createMessage);
-router.get('/', MessageService.getMessage);
+router.get('/', UserService.getAllUser);
 
 export default router;
