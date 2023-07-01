@@ -1,0 +1,9 @@
+{
+    "user": {
+        "getAllUser": "/user"
+    },
+    "chats": {
+        "post":"/message",
+        "getChats": "/message/get-user-messages"
+    }
+}

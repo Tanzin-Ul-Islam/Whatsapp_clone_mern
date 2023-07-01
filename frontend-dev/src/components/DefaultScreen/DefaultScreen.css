@@ -1,0 +1,33 @@
+.defalutScreen {
+    display: flex;
+    flex-direction: column;
+    flex: 0.65;
+}
+
+.defalutScreen_body {
+    flex: 1;
+    background-image: url('https://w0.peakpx.com/wallpaper/550/527/HD-wallpaper-whatsapp-paper-black-background-thumbnail.jpg');
+    background-repeat: repeat;
+    background-position: center;
+    padding: 30px;
+    position: relative;
+}
+
+.defalutScreen_content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-size: 14px;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.defalutScreen_content > img{
+    object-fit: contain;
+    height: 100px;
+    margin-bottom: 20px;
+}
